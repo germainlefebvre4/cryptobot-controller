@@ -6,9 +6,8 @@ import math
 from typing import Any, List, Optional, Dict
 
 from fastapi import APIRouter, Depends, HTTPException, Query, Request, Response
-from sqlalchemy.orm import Session
 
-from app import crud, models, schemas
+from app import crud, schemas
 from app.api import deps
 
 router = APIRouter()

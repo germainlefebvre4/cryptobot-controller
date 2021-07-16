@@ -7,7 +7,6 @@ from kubernetes.client.rest import ApiException
 from typing import List, Dict, Union, Any
 
 from fastapi.encoders import jsonable_encoder
-from sqlalchemy.orm import Session
 
 from app.crud.base import CRUDBase
 from app.schemas import OperatorBot, OperatorBotCreate, OperatorBotUpdate, OperatorBotDelete
@@ -20,7 +19,7 @@ class CRUDOperatorBot(CRUDBase[OperatorBot, OperatorBotCreate, OperatorBotUpdate
     ) -> Any:
         obj_in_data = jsonable_encoder(obj_in)
 
-        config.load_kube_config()
+        config.load_incluster_config()
 
         api = client.CustomObjectsApi()
         bot_name = f'{obj_in_data["customer"]}-{obj_in_data["binance_config_base_currency"]}{obj_in_data["binance_config_quote_currency"]}'
@@ -35,8 +34,8 @@ class CRUDOperatorBot(CRUDBase[OperatorBot, OperatorBotCreate, OperatorBotUpdate
                 "binance_api_key": obj_in_data["binance_api_key"],
                 "binance_api_secret": obj_in_data["binance_api_secret"],
                 "binance_api_url": obj_in_data["binance_api_url"],
-                "binance_config_base_currency": obj_in_data["binance_config_base_currency"],
-                "binance_config_quote_currency": obj_in_data["binance_config_quote_currency"],
+                "binance_config_base_currency": obj_in_data["binance_config_base_currency"].upper(),
+                "binance_config_quote_currency": obj_in_data["binance_config_quote_currency"].upper(),
                 "binance_config_granularity": obj_in_data["binance_config_granularity"],
                 "binance_config_live": int(obj_in_data["binance_config_live"]),
                 "binance_config_verbose": int(obj_in_data["binance_config_verbose"]),
@@ -68,7 +67,7 @@ class CRUDOperatorBot(CRUDBase[OperatorBot, OperatorBotCreate, OperatorBotUpdate
         self, *,
         bot_name: str,
     ) -> OperatorBot:
-        config.load_kube_config()
+        config.load_incluster_config()
 
         api = client.CustomObjectsApi()
 
@@ -97,7 +96,7 @@ class CRUDOperatorBot(CRUDBase[OperatorBot, OperatorBotCreate, OperatorBotUpdate
     ) -> Any:
         obj_in_data = jsonable_encoder(obj_in)
 
-        config.load_kube_config()
+        config.load_incluster_config()
 
         api = client.CustomObjectsApi()
         data = {
@@ -142,7 +141,7 @@ class CRUDOperatorBot(CRUDBase[OperatorBot, OperatorBotCreate, OperatorBotUpdate
         self, *,
         bot_name: str,
     ) -> Any:
-        config.load_kube_config()
+        config.load_incluster_config()
 
         api = client.CustomObjectsApi()
 

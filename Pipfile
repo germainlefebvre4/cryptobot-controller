@@ -23,8 +23,7 @@ passlib = {extras = ["bcrypt"], version = "*"}
 python-multipart = "*"
 emails = "*"
 email-validator = "*"
-psycopg2 = "*"
-psycopg2-binary = "*"
+kubernetes = "*"
 
 [requires]
 python_version = "3.8"
