@@ -22,7 +22,7 @@ class CRUDOperatorBot(CRUDBase[OperatorBot, OperatorBotCreate, OperatorBotUpdate
         config.load_incluster_config()
 
         api = client.CustomObjectsApi()
-        bot_name = f'{obj_in_data["customer"]}-{obj_in_data["binance_config_base_currency"]}{obj_in_data["binance_config_quote_currency"]}'
+        bot_name = f'{obj_in_data["user_id"]}-{obj_in_data["binance_config_base_currency"]}{obj_in_data["binance_config_quote_currency"]}'
         data = {
             "apiVersion": "cryptobot.com/v1",
             "kind": "Bot",

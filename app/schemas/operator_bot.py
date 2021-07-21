@@ -5,7 +5,7 @@ from pydantic import BaseModel
 
 
 class OperatorBotBase(BaseModel):
-    customer: str
+    user_id: int
     binance_api_url: str = "https://api.binance.com"
     binance_api_key: str
     binance_api_secret: str
@@ -16,19 +16,19 @@ class OperatorBotBase(BaseModel):
     binance_config_verbose : bool = True
     binance_config_graphs: bool = False
     binance_config_buymaxsize: float
-    binance_config_sellupperpcnt: float
-    binance_config_selllowerpcnt: float
+    binance_config_sellupperpcnt: Optional[float]
+    binance_config_selllowerpcnt: Optional[float]
     logger_filelog: bool = False
     logger_logfile: str = "pycryptobot.log"
     logger_fileloglevel: str = "INFO"
     logger_consolelog: bool = True
     logger_consoleloglevel: str
-    telegram_client_id: str
-    telegram_token: str
+    telegram_client_id: Optional[str]
+    telegram_token: Optional[str]
 
 
 class OperatorBotCreate(BaseModel):
-    customer: str
+    user_id: int
     binance_api_url: str = "https://api.binance.com"
     binance_api_key: str
     binance_api_secret: str
@@ -39,15 +39,15 @@ class OperatorBotCreate(BaseModel):
     binance_config_verbose : bool = True
     binance_config_graphs: bool = False
     binance_config_buymaxsize: float
-    binance_config_sellupperpcnt: float
-    binance_config_selllowerpcnt: float
+    binance_config_sellupperpcnt: Optional[float]
+    binance_config_selllowerpcnt: Optional[float]
     logger_filelog: bool = False
     logger_logfile: str = "pycryptobot.log"
     logger_fileloglevel: str = "INFO"
     logger_consolelog: bool = True
     logger_consoleloglevel: str
-    telegram_client_id: str
-    telegram_token: str
+    telegram_client_id: Optional[str]
+    telegram_token: Optional[str]
 
 
 class OperatorBotUpdate(BaseModel):
@@ -59,15 +59,15 @@ class OperatorBotUpdate(BaseModel):
     binance_config_verbose : bool = True
     binance_config_graphs: bool = False
     binance_config_buymaxsize: float
-    binance_config_sellupperpcnt: float
-    binance_config_selllowerpcnt: float
+    binance_config_sellupperpcnt: Optional[float]
+    binance_config_selllowerpcnt: Optional[float]
     logger_filelog: bool = False
     logger_logfile: str = "pycryptobot.log"
     logger_fileloglevel: str = "INFO"
     logger_consolelog: bool = True
     logger_consoleloglevel: str
-    telegram_client_id: str
-    telegram_token: str
+    telegram_client_id: Optional[str]
+    telegram_token: Optional[str]
 
 
 class OperatorBotDelete(BaseModel):
