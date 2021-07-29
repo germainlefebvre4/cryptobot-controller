@@ -20,6 +20,7 @@ class CRUDOperatorBot(CRUDBase[OperatorBot, OperatorBotCreate, OperatorBotUpdate
         obj_in_data = jsonable_encoder(obj_in)
 
         config.load_incluster_config()
+        # config.load_kube_config()
 
         api = client.CustomObjectsApi()
         bot_name = f'{obj_in_data["user_id"]}-{obj_in_data["binance_config_base_currency"]}{obj_in_data["binance_config_quote_currency"]}'
@@ -27,7 +28,7 @@ class CRUDOperatorBot(CRUDBase[OperatorBot, OperatorBotCreate, OperatorBotUpdate
             "apiVersion": "cryptobot.com/v1",
             "kind": "Bot",
             "metadata": {
-                "name": bot_name,
+                "name": bot_name.lower(),
                 "namespace": "cryptobot",
             },
             "spec": {
@@ -67,7 +68,8 @@ class CRUDOperatorBot(CRUDBase[OperatorBot, OperatorBotCreate, OperatorBotUpdate
         self, *,
         bot_name: str,
     ) -> OperatorBot:
-        config.load_incluster_config()
+        # config.load_incluster_config()
+        config.load_kube_config()
 
         api = client.CustomObjectsApi()
 
@@ -77,10 +79,10 @@ class CRUDOperatorBot(CRUDBase[OperatorBot, OperatorBotCreate, OperatorBotUpdate
                 version = "v1",
                 namespace = "cryptobot",
                 plural = "bots",
-                name = bot_name,
+                name = bot_name.lower(),
             )
             result = operator_bot["spec"]
-            result["name"] = bot_name
+            result["name"] = bot_name.lower()
             
             return OperatorBot(**result)
             
@@ -96,7 +98,8 @@ class CRUDOperatorBot(CRUDBase[OperatorBot, OperatorBotCreate, OperatorBotUpdate
     ) -> Any:
         obj_in_data = jsonable_encoder(obj_in)
 
-        config.load_incluster_config()
+        # config.load_incluster_config()
+        config.load_kube_config()
 
         api = client.CustomObjectsApi()
         data = {
@@ -129,7 +132,7 @@ class CRUDOperatorBot(CRUDBase[OperatorBot, OperatorBotCreate, OperatorBotUpdate
                 version = "v1",
                 namespace = "cryptobot",
                 plural = "bots",
-                name = bot_name,
+                name = bot_name.lower(),
                 body = data,
             )
         except ApiException as e:
@@ -141,7 +144,8 @@ class CRUDOperatorBot(CRUDBase[OperatorBot, OperatorBotCreate, OperatorBotUpdate
         self, *,
         bot_name: str,
     ) -> Any:
-        config.load_incluster_config()
+        # config.load_incluster_config()
+        config.load_kube_config()
 
         api = client.CustomObjectsApi()
 
@@ -151,7 +155,7 @@ class CRUDOperatorBot(CRUDBase[OperatorBot, OperatorBotCreate, OperatorBotUpdate
                 version = "v1",
                 namespace = "cryptobot",
                 plural = "bots",
-                name = bot_name,
+                name = bot_name.lower(),
             )
         except ApiException as e:
             print("Exception when calling CRUD->OperatorBot->delete_bot: \n%s\n" % e)
