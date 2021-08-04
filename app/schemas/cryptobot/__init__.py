@@ -10,8 +10,6 @@ from app.schemas.cryptobot.telegram import Telegram
 
 class CryptobotBase(BaseModel):
     binance_api_url: str = "https://api.binance.com"
-    binance_api_key: str
-    binance_api_secret: str
     binance_config_base_currency: str
     binance_config_quote_currency: str
     binance_config_granularity: str = "15m"
@@ -30,8 +28,6 @@ class CryptobotBase(BaseModel):
 
 class CryptobotCreate(CryptobotBase):
     binance_api_url: str = "https://api.binance.com"
-    binance_api_key: str
-    binance_api_secret: str
     binance_config_base_currency: str
     binance_config_quote_currency: str
     binance_config_granularity: str = "15m"
@@ -50,8 +46,6 @@ class CryptobotCreate(CryptobotBase):
 
 class CryptobotUpdate(CryptobotBase):
     binance_api_url: str = "https://api.binance.com"
-    binance_api_key: str
-    binance_api_secret: str
     binance_config_base_currency: str
     binance_config_quote_currency: str
     binance_config_granularity: str = "15m"
@@ -82,8 +76,6 @@ class CryptobotInDBBase(CryptobotBase):
     user: User
     
     binance_api_url: str = "https://api.binance.com"
-    binance_api_key: str
-    binance_api_secret: str
     binance_config_base_currency: str
     binance_config_quote_currency: str
     binance_config_granularity: str = "15m"

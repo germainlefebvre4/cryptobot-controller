@@ -32,8 +32,6 @@ class CRUDOperatorBot(CRUDBase[OperatorBot, OperatorBotCreate, OperatorBotUpdate
                 "namespace": "cryptobot",
             },
             "spec": {
-                "binance_api_key": obj_in_data["binance_api_key"],
-                "binance_api_secret": obj_in_data["binance_api_secret"],
                 "binance_api_url": obj_in_data["binance_api_url"],
                 "binance_config_base_currency": obj_in_data["binance_config_base_currency"].upper(),
                 "binance_config_quote_currency": obj_in_data["binance_config_quote_currency"].upper(),
@@ -117,12 +115,10 @@ class CRUDOperatorBot(CRUDBase[OperatorBot, OperatorBotCreate, OperatorBotUpdate
             "apiVersion": "cryptobot.com/v1",
             "kind": "Bot",
             "metadata": {
-                "name": bot_name,
+                "name": bot_name.lower(),
                 "namespace": "cryptobot",
             },
             "spec": {
-                "binance_api_key": obj_in_data["binance_api_key"],
-                "binance_api_secret": obj_in_data["binance_api_secret"],
                 "binance_api_url": obj_in_data["binance_api_url"],
                 "binance_config_granularity": obj_in_data["binance_config_granularity"],
                 "binance_config_live": int(obj_in_data["binance_config_live"]),
