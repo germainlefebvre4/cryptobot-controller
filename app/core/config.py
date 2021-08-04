@@ -23,6 +23,7 @@ class Settings(BaseSettings):
             return v
         raise ValueError(v)
 
+    ENV: str = "prod"
     PROJECT_NAME: str = "pycryptobot-api"
     SENTRY_DSN: Optional[HttpUrl] = ""
 

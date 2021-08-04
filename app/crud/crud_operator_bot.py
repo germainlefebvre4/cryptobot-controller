@@ -8,6 +8,7 @@ from typing import List, Dict, Union, Any
 
 from fastapi.encoders import jsonable_encoder
 
+from app.core.config import settings
 from app.crud.base import CRUDBase
 from app.schemas import OperatorBot, OperatorBotCreate, OperatorBotUpdate, OperatorBotDelete
 
@@ -17,10 +18,12 @@ class CRUDOperatorBot(CRUDBase[OperatorBot, OperatorBotCreate, OperatorBotUpdate
         self, *,
         obj_in: Any,
     ) -> Any:
-        obj_in_data = jsonable_encoder(obj_in)
+        if settings.ENV == "dev":
+            config.load_kube_config()
+        else:
+            config.load_incluster_config()
 
-        config.load_incluster_config()
-        # config.load_kube_config()
+        obj_in_data = jsonable_encoder(obj_in)
 
         api = client.CustomObjectsApi()
         bot_name = f'{obj_in_data["user_id"]}-{obj_in_data["binance_config_base_currency"]}{obj_in_data["binance_config_quote_currency"]}'
@@ -79,8 +82,10 @@ class CRUDOperatorBot(CRUDBase[OperatorBot, OperatorBotCreate, OperatorBotUpdate
         self, *,
         bot_name: str,
     ) -> OperatorBot:
-        config.load_incluster_config()
-        # config.load_kube_config()
+        if settings.ENV == "dev":
+            config.load_kube_config()
+        else:
+            config.load_incluster_config()
 
         api = client.CustomObjectsApi()
 
@@ -107,10 +112,12 @@ class CRUDOperatorBot(CRUDBase[OperatorBot, OperatorBotCreate, OperatorBotUpdate
         bot_name: str,
         obj_in: Union[OperatorBotUpdate, Dict[str, Any]]
     ) -> Any:
-        obj_in_data = jsonable_encoder(obj_in)
+        if settings.ENV == "dev":
+            config.load_kube_config()
+        else:
+            config.load_incluster_config()
 
-        config.load_incluster_config()
-        # config.load_kube_config()
+        obj_in_data = jsonable_encoder(obj_in)
 
         api = client.CustomObjectsApi()
         data = {
@@ -166,8 +173,10 @@ class CRUDOperatorBot(CRUDBase[OperatorBot, OperatorBotCreate, OperatorBotUpdate
         self, *,
         bot_name: str,
     ) -> Any:
-        config.load_incluster_config()
-        # config.load_kube_config()
+        if settings.ENV == "dev":
+            config.load_kube_config()
+        else:
+            config.load_incluster_config()
 
         api = client.CustomObjectsApi()
 
