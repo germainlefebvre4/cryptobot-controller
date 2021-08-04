@@ -19,8 +19,8 @@ class CRUDOperatorBot(CRUDBase[OperatorBot, OperatorBotCreate, OperatorBotUpdate
     ) -> Any:
         obj_in_data = jsonable_encoder(obj_in)
 
-        # config.load_incluster_config()
-        config.load_kube_config()
+        config.load_incluster_config()
+        # config.load_kube_config()
 
         api = client.CustomObjectsApi()
         bot_name = f'{obj_in_data["user_id"]}-{obj_in_data["binance_config_base_currency"]}{obj_in_data["binance_config_quote_currency"]}'
@@ -77,8 +77,8 @@ class CRUDOperatorBot(CRUDBase[OperatorBot, OperatorBotCreate, OperatorBotUpdate
         self, *,
         bot_name: str,
     ) -> OperatorBot:
-        # config.load_incluster_config()
-        config.load_kube_config()
+        config.load_incluster_config()
+        # config.load_kube_config()
 
         api = client.CustomObjectsApi()
 
@@ -107,8 +107,8 @@ class CRUDOperatorBot(CRUDBase[OperatorBot, OperatorBotCreate, OperatorBotUpdate
     ) -> Any:
         obj_in_data = jsonable_encoder(obj_in)
 
-        # config.load_incluster_config()
-        config.load_kube_config()
+        config.load_incluster_config()
+        # config.load_kube_config()
 
         api = client.CustomObjectsApi()
         data = {
@@ -162,8 +162,8 @@ class CRUDOperatorBot(CRUDBase[OperatorBot, OperatorBotCreate, OperatorBotUpdate
         self, *,
         bot_name: str,
     ) -> Any:
-        # config.load_incluster_config()
-        config.load_kube_config()
+        config.load_incluster_config()
+        # config.load_kube_config()
 
         api = client.CustomObjectsApi()
 
