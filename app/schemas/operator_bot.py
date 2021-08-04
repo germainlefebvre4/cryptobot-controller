@@ -7,6 +7,8 @@ from pydantic import BaseModel
 class OperatorBotBase(BaseModel):
     user_id: int
     binance_api_url: str = "https://api.binance.com"
+    binance_api_key: str
+    binance_api_secret: str
     binance_config_base_currency: str
     binance_config_quote_currency: str
     binance_config_granularity: str = "15m"
@@ -39,6 +41,8 @@ class OperatorBotBase(BaseModel):
 class OperatorBotCreate(BaseModel):
     user_id: int
     binance_api_url: str = "https://api.binance.com"
+    binance_api_key: str
+    binance_api_secret: str
     binance_config_base_currency: str
     binance_config_quote_currency: str
     binance_config_granularity: str = "15m"
@@ -70,6 +74,8 @@ class OperatorBotCreate(BaseModel):
 
 class OperatorBotUpdate(BaseModel):
     binance_api_url: str = "https://api.binance.com"
+    binance_api_key: str
+    binance_api_secret: str
     binance_config_granularity: str = "15m"
     binance_config_live: bool = False
     binance_config_verbose : bool = True
