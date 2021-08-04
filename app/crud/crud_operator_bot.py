@@ -19,8 +19,8 @@ class CRUDOperatorBot(CRUDBase[OperatorBot, OperatorBotCreate, OperatorBotUpdate
     ) -> Any:
         obj_in_data = jsonable_encoder(obj_in)
 
-        config.load_incluster_config()
-        # config.load_kube_config()
+        # config.load_incluster_config()
+        config.load_kube_config()
 
         api = client.CustomObjectsApi()
         bot_name = f'{obj_in_data["user_id"]}-{obj_in_data["binance_config_base_currency"]}{obj_in_data["binance_config_quote_currency"]}'
@@ -44,6 +44,17 @@ class CRUDOperatorBot(CRUDBase[OperatorBot, OperatorBotCreate, OperatorBotUpdate
                 "binance_config_buymaxsize": obj_in_data["binance_config_buymaxsize"],
                 "binance_config_sellupperpcnt": float(obj_in_data["binance_config_sellupperpcnt"]),
                 "binance_config_selllowerpcnt": float(obj_in_data["binance_config_selllowerpcnt"]),
+                "binance_config_disablebullonly": int(obj_in_data["binance_config_disablebullonly"]),
+                "binance_config_disablebuynearhigh": int(obj_in_data["binance_config_disablebuynearhigh"]),
+                "binance_config_disablebuymacd": int(obj_in_data["binance_config_disablebuymacd"]),
+                "binance_config_disablebuyema": int(obj_in_data["binance_config_disablebuyema"]),
+                "binance_config_disablebuyobv": int(obj_in_data["binance_config_disablebuyobv"]),
+                "binance_config_disablebuyelderray": int(obj_in_data["binance_config_disablebuyelderray"]),
+                "binance_config_disablefailsafefibonaccilow": int(obj_in_data["binance_config_disablefailsafefibonaccilow"]),
+                "binance_config_disablefailsafelowerpcnt": int(obj_in_data["binance_config_disablefailsafelowerpcnt"]),
+                "binance_config_disableprofitbankupperpcnt": int(obj_in_data["binance_config_disableprofitbankupperpcnt"]),
+                "binance_config_disableprofitbankfibonaccihigh": int(obj_in_data["binance_config_disableprofitbankfibonaccihigh"]),
+                "binance_config_disableprofitbankreversal": int(obj_in_data["binance_config_disableprofitbankreversal"]),
                 "logger_consoleloglevel": obj_in_data["logger_consoleloglevel"],
                 "telegram_client_id": obj_in_data["telegram_client_id"],
                 "telegram_token": obj_in_data["telegram_token"]
@@ -68,8 +79,8 @@ class CRUDOperatorBot(CRUDBase[OperatorBot, OperatorBotCreate, OperatorBotUpdate
         self, *,
         bot_name: str,
     ) -> OperatorBot:
-        config.load_incluster_config()
-        # config.load_kube_config()
+        # config.load_incluster_config()
+        config.load_kube_config()
 
         api = client.CustomObjectsApi()
 
@@ -98,8 +109,8 @@ class CRUDOperatorBot(CRUDBase[OperatorBot, OperatorBotCreate, OperatorBotUpdate
     ) -> Any:
         obj_in_data = jsonable_encoder(obj_in)
 
-        config.load_incluster_config()
-        # config.load_kube_config()
+        # config.load_incluster_config()
+        config.load_kube_config()
 
         api = client.CustomObjectsApi()
         data = {
@@ -120,6 +131,17 @@ class CRUDOperatorBot(CRUDBase[OperatorBot, OperatorBotCreate, OperatorBotUpdate
                 "binance_config_buymaxsize": obj_in_data["binance_config_buymaxsize"],
                 "binance_config_sellupperpcnt": float(obj_in_data["binance_config_sellupperpcnt"]),
                 "binance_config_selllowerpcnt": float(obj_in_data["binance_config_selllowerpcnt"]),
+                "binance_config_disablebullonly": int(obj_in_data["binance_config_disablebullonly"]),
+                "binance_config_disablebuynearhigh": int(obj_in_data["binance_config_disablebuynearhigh"]),
+                "binance_config_disablebuymacd": int(obj_in_data["binance_config_disablebuymacd"]),
+                "binance_config_disablebuyema": int(obj_in_data["binance_config_disablebuyema"]),
+                "binance_config_disablebuyobv": int(obj_in_data["binance_config_disablebuyobv"]),
+                "binance_config_disablebuyelderray": int(obj_in_data["binance_config_disablebuyelderray"]),
+                "binance_config_disablefailsafefibonaccilow": int(obj_in_data["binance_config_disablefailsafefibonaccilow"]),
+                "binance_config_disablefailsafelowerpcnt": int(obj_in_data["binance_config_disablefailsafelowerpcnt"]),
+                "binance_config_disableprofitbankupperpcnt": int(obj_in_data["binance_config_disableprofitbankupperpcnt"]),
+                "binance_config_disableprofitbankfibonaccihigh": int(obj_in_data["binance_config_disableprofitbankfibonaccihigh"]),
+                "binance_config_disableprofitbankreversal": int(obj_in_data["binance_config_disableprofitbankreversal"]),
                 "logger_consoleloglevel": obj_in_data["logger_consoleloglevel"],
                 "telegram_client_id": obj_in_data["telegram_client_id"],
                 "telegram_token": obj_in_data["telegram_token"]
@@ -144,8 +166,8 @@ class CRUDOperatorBot(CRUDBase[OperatorBot, OperatorBotCreate, OperatorBotUpdate
         self, *,
         bot_name: str,
     ) -> Any:
-        config.load_incluster_config()
-        # config.load_kube_config()
+        # config.load_incluster_config()
+        config.load_kube_config()
 
         api = client.CustomObjectsApi()
 

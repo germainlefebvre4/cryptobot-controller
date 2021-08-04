@@ -16,8 +16,19 @@ class OperatorBotBase(BaseModel):
     binance_config_verbose : bool = True
     binance_config_graphs: bool = False
     binance_config_buymaxsize: float
-    binance_config_sellupperpcnt: Optional[float]
-    binance_config_selllowerpcnt: Optional[float]
+    binance_config_sellupperpcnt: float
+    binance_config_selllowerpcnt: float
+    binance_config_disablebullonly: bool
+    binance_config_disablebuynearhigh: bool
+    binance_config_disablebuymacd: bool
+    binance_config_disablebuyema: bool
+    binance_config_disablebuyobv: bool
+    binance_config_disablebuyelderray: bool
+    binance_config_disablefailsafefibonaccilow: bool
+    binance_config_disablefailsafelowerpcnt: bool
+    binance_config_disableprofitbankupperpcnt: bool
+    binance_config_disableprofitbankfibonaccihigh: bool
+    binance_config_disableprofitbankreversal: bool
     logger_filelog: bool = False
     logger_logfile: str = "pycryptobot.log"
     logger_fileloglevel: str = "INFO"
@@ -39,8 +50,19 @@ class OperatorBotCreate(BaseModel):
     binance_config_verbose : bool = True
     binance_config_graphs: bool = False
     binance_config_buymaxsize: float
-    binance_config_sellupperpcnt: Optional[float]
-    binance_config_selllowerpcnt: Optional[float]
+    binance_config_sellupperpcnt: float
+    binance_config_selllowerpcnt: float
+    binance_config_disablebullonly: bool
+    binance_config_disablebuynearhigh: bool
+    binance_config_disablebuymacd: bool
+    binance_config_disablebuyema: bool
+    binance_config_disablebuyobv: bool
+    binance_config_disablebuyelderray: bool
+    binance_config_disablefailsafefibonaccilow: bool
+    binance_config_disablefailsafelowerpcnt: bool
+    binance_config_disableprofitbankupperpcnt: bool
+    binance_config_disableprofitbankfibonaccihigh: bool
+    binance_config_disableprofitbankreversal: bool
     logger_filelog: bool = False
     logger_logfile: str = "pycryptobot.log"
     logger_fileloglevel: str = "INFO"
@@ -59,8 +81,19 @@ class OperatorBotUpdate(BaseModel):
     binance_config_verbose : bool = True
     binance_config_graphs: bool = False
     binance_config_buymaxsize: float
-    binance_config_sellupperpcnt: Optional[float]
-    binance_config_selllowerpcnt: Optional[float]
+    binance_config_sellupperpcnt: float
+    binance_config_selllowerpcnt: float
+    binance_config_disablebullonly: bool
+    binance_config_disablebuynearhigh: bool
+    binance_config_disablebuymacd: bool
+    binance_config_disablebuyema: bool
+    binance_config_disablebuyobv: bool
+    binance_config_disablebuyelderray: bool
+    binance_config_disablefailsafefibonaccilow: bool
+    binance_config_disablefailsafelowerpcnt: bool
+    binance_config_disableprofitbankupperpcnt: bool
+    binance_config_disableprofitbankfibonaccihigh: bool
+    binance_config_disableprofitbankreversal: bool
     logger_filelog: bool = False
     logger_logfile: str = "pycryptobot.log"
     logger_fileloglevel: str = "INFO"

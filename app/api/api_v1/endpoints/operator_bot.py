@@ -40,6 +40,7 @@ def create_operator_bot(
     """
     Create new cryptobot.
     """
+    print(cryptobot_config_in)
     crud.operator_bot.create_bot(obj_in=cryptobot_config_in)
     bot_name = f'{cryptobot_config_in.user_id}-{cryptobot_config_in.binance_config_base_currency}{cryptobot_config_in.binance_config_quote_currency}'
     
