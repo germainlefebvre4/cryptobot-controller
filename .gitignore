@@ -5,3 +5,4 @@ htmlcov
 .env*
 !.env.template
 *.backup.*
+wip_*.py
