@@ -90,21 +90,12 @@ class CRUDBot(CRUDBase[Bot, BotCreate, BotUpdate]):
 
         try:
             pods_list = api_corev1.list_namespaced_pod(label_selector=f"app={bot_name}", namespace="cryptobot")
-            if len(pods_list.items) > 0:
-                pod = pods_list.items[0]
-                try:
-                    pod_logs = api_corev1.read_namespaced_pod_log(name=pod.metadata.name, namespace="cryptobot", pretty=True, tail_lines=50)
-                except ApiException as e:
-                    pod_logs = ""
-                return BotLogs(logs=pod_logs)
-            else:
-                return BotLogs(logs="No logs available.")
-            # pod = pods_list.items[0]
-            # try:
-            #     pod_logs = api_corev1.read_namespaced_pod_log(name=pod.metadata.name, namespace="cryptobot", pretty=True, tail_lines=50)
-            # except ApiException as e:
-            #     pod_logs = ""
-            # return BotLogs(logs=pod_logs)
+            pod = pods_list.items[0]
+            try:
+                pod_logs = api_corev1.read_namespaced_pod_log(name=pod.metadata.name, namespace="cryptobot", pretty=True, tail_lines=50)
+            except:
+                pod_logs = ""
+            return BotLogs(logs=pod_logs)
             
         except ApiException as e:
             print("Exception when calling CRUD->Bot->get_logs: \n%s\n" % e)
