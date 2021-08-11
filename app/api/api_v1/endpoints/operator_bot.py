@@ -13,32 +13,13 @@ from app.api import deps
 router = APIRouter()
 
 
-# @router.get("/", response_model=List[schemas.Cryptobot])
-# def read_cryptobots(
-#     db: Session = Depends(deps.get_db),
-#     skip: int = 0,
-#     limit: int = 100,
-# ) -> Any:
-#     """
-#     Retrieve cryptobots.
-#     """
-#     namespace = "cryptobot"
-#     configmaps = crud.configmap.get_multi(namespace=namespace)
-#     deployments = crud.deploymeny.get_multi(namespace=namespace)
-#     response = dict(
-#         configmaps=configmaps,
-#         deployments=deployments)
-
-#     return response
-
-
 @router.post("/")
 def create_operator_bot(
     *,
     cryptobot_config_in: schemas.OperatorBotCreate,
 ) -> Any:
     """
-    Create new cryptobot.
+    Create new operator bot.
     """
     crud.operator_bot.create_bot(obj_in=cryptobot_config_in)
     bot_name = f'{cryptobot_config_in.user_id}-{cryptobot_config_in.binance_config_base_currency}{cryptobot_config_in.binance_config_quote_currency}'
@@ -53,7 +34,7 @@ def update_cryptobot(
     cryptobot_config_in: schemas.OperatorBotUpdate,
 ) -> Any:
     """
-    Update an cryptobot.
+    Update an operator bot.
     """
     crud.operator_bot.update_bot(bot_name=name, obj_in=cryptobot_config_in)
     
@@ -66,7 +47,7 @@ def read_cryptobot(
     name: str,
 ) -> Any:
     """
-    Get cryptobot by name.
+    Get operator bot by name.
     """
     operator_bot = crud.operator_bot.get_bot(bot_name=name)
     
@@ -80,7 +61,7 @@ def delete_cryptobot(
     name: str,
 ) -> Any:
     """
-    Delete an cryptobot.
+    Delete an operator bot.
     """
     crud.operator_bot.delete_bot(bot_name=name)
 
