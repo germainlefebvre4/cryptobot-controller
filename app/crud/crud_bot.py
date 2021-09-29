@@ -10,7 +10,7 @@ from fastapi.encoders import jsonable_encoder
 
 from app.core.config import settings
 from app.crud.base import CRUDBase
-from app.schemas import Bot, BotCreate, BotUpdate, BotStatus, BotLogs
+from app.schemas import Bot, BotCreate, BotUpdate, BotStatus, BotLogs, BotVersion
 
 
 class CRUDBot(CRUDBase[Bot, BotCreate, BotUpdate]):
@@ -108,6 +108,34 @@ class CRUDBot(CRUDBase[Bot, BotCreate, BotUpdate]):
             
         except ApiException as e:
             print("Exception when calling CRUD->Bot->get_logs: \n%s\n" % e)
+
+
+    def get_version(
+        self, *,
+        bot_name: str,
+    ) -> str:
+        if settings.ENV == "dev":
+            config.load_kube_config()
+        else:
+            config.load_incluster_config()
+
+        api_corev1 = client.CoreV1Api()
+
+        try:
+            pods_list = api_corev1.list_namespaced_pod(label_selector=f"app={bot_name}", namespace="cryptobot")
+            if len(pods_list.items) > 0:
+                pod = pods_list.items[0]
+                try:
+                    pod_desc = api_corev1.read_namespaced_pod(name=pod.metadata.name, namespace="cryptobot")
+                    pod_version = pod_desc.spec.containers[0].image.split(":")[1]
+                except ApiException as e:
+                    pod_version = "unknown"
+                return BotVersion(version=f"{pod_version}")
+            else:
+                return BotVersion(version="An error occured on retrieving version.")
+            
+        except ApiException as e:
+            print("Exception when calling CRUD->Bot->get_version: \n%s\n" % e)
 
 
 bot = CRUDBot(Bot)
