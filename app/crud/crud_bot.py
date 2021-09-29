@@ -57,7 +57,7 @@ class CRUDBot(CRUDBase[Bot, BotCreate, BotUpdate]):
             pods_list = api_corev1.list_namespaced_pod(label_selector=f"app={bot_name}", namespace="cryptobot")
             if len(pods_list.items) > 0:
                 pod = pods_list.items[0]
-                if pod.status.container_statuses[0].ready & pod.status.container_statuses[0].ready:
+                if pod.status.container_statuses[0].ready & pod.status.container_statuses[0].started:
                     return BotStatus(
                         name=bot_name,
                         status="RUNNING",
