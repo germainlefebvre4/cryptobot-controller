@@ -118,7 +118,7 @@ class CRUDBot(CRUDBase[Bot, BotCreate, BotUpdate]):
         try:
             deployment_desc = api_appsv1.read_namespaced_deployment(name=bot_name, namespace="cryptobot")
             bot_version = deployment_desc.spec.template.spec.containers[0].image.split(":")[1]
-            return bot_version
+            return BotVersion(version=bot_version)
         except ApiException as e:
             print("Exception when calling CRUD->Bot->get_version: \n%s\n" % e)
 
