@@ -27,3 +27,6 @@ class BotStatus(BaseModel):
 
 class BotLogs(BaseModel):
     logs: str
+
+class BotVersion(BaseModel):
+    version: str

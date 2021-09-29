@@ -50,3 +50,17 @@ def read_bot_logs(
     bot_logs = crud.bot.get_logs(bot_name=name)
     
     return bot_logs
+
+
+
+@router.get("/{name}/version", response_model=schemas.BotVersion)
+def read_bot_version(
+    *,
+    name: str,
+) -> Any:
+    """
+    Get bot version by name.
+    """
+    bot_version = crud.bot.get_version(bot_name=name)
+    
+    return bot_version
