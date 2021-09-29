@@ -93,18 +93,12 @@ class CRUDBot(CRUDBase[Bot, BotCreate, BotUpdate]):
             if len(pods_list.items) > 0:
                 pod = pods_list.items[0]
                 try:
-                    pod_logs = api_corev1.read_namespaced_pod_log(name=pod.metadata.name, namespace="cryptobot", pretty=True, tail_lines=50)
+                    pod_logs = api_corev1.read_namespaced_pod_log(name=pod.metadata.name, namespace="cryptobot", tail_lines=50)
                 except ApiException as e:
                     pod_logs = ""
                 return BotLogs(logs=pod_logs)
             else:
                 return BotLogs(logs="No logs available.")
-            # pod = pods_list.items[0]
-            # try:
-            #     pod_logs = api_corev1.read_namespaced_pod_log(name=pod.metadata.name, namespace="cryptobot", pretty=True, tail_lines=50)
-            # except ApiException as e:
-            #     pod_logs = ""
-            # return BotLogs(logs=pod_logs)
             
         except ApiException as e:
             print("Exception when calling CRUD->Bot->get_logs: \n%s\n" % e)
@@ -119,21 +113,12 @@ class CRUDBot(CRUDBase[Bot, BotCreate, BotUpdate]):
         else:
             config.load_incluster_config()
 
-        api_corev1 = client.CoreV1Api()
+        api_appsv1 = client.AppsV1Api()
 
         try:
-            pods_list = api_corev1.list_namespaced_pod(label_selector=f"app={bot_name}", namespace="cryptobot")
-            if len(pods_list.items) > 0:
-                pod = pods_list.items[0]
-                try:
-                    pod_desc = api_corev1.read_namespaced_pod(name=pod.metadata.name, namespace="cryptobot")
-                    pod_version = pod_desc.spec.containers[0].image.split(":")[1]
-                except ApiException as e:
-                    pod_version = "unknown"
-                return BotVersion(version=f"{pod_version}")
-            else:
-                return BotVersion(version="An error occured on retrieving version.")
-            
+            deployment_desc = api_appsv1.read_namespaced_deployment(name=bot_name, namespace="cryptobot")
+            bot_version = deployment_desc.spec.template.spec.containers[0].image.split(":")[1]
+            return bot_version
         except ApiException as e:
             print("Exception when calling CRUD->Bot->get_version: \n%s\n" % e)
 

@@ -75,7 +75,7 @@ class CRUDOperatorBot(CRUDBase[OperatorBot, OperatorBotCreate, OperatorBotUpdate
         except ApiException as e:
             print("Exception when calling CRUD->OperatorBot->create_bot: \n%s\n" % e)
 
-        return obj_in_data
+        return bot_name, obj_in_data
 
 
     def get_bot(
